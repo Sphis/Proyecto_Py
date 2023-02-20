@@ -60,24 +60,8 @@ def show_score(choice, color):
 
 # Funcion para pantalla de perdida
 def game_over():
-    
-    # Estilo de letra
-    estilo_perdida = get_font(50)
-
-    # Texto a generar   REVISAR
-    texto_perdida = estilo_perdida.render('Su puntaje es de : ' + str(puntaje), True, white)
-
-    # Cuadro para ensenar texto
-    perdida_cuadro = texto_perdida.get_rect()
-
-    # Ubicacion del cuadro
-    perdida_cuadro.midtop = (WIDTH/2, HEIGHT/4)
-
-    # Para mostrar texto    REVISAR
-    VENTANA.blit(texto_perdida, perdida_cuadro)
-
     # Mandar al menu cuando pierde
-    # main_menu()
+    main_menu()
 
 
 
@@ -175,7 +159,22 @@ def juego():
 # Funcion para menu inicial
 def main_menu():
     while True:
-        VENTANA.blit(fondo, (50, 0))
+        VENTANA.blit(fondo, (0, 0))
+
+        # Estilo de letra
+        estilo_perdida = get_font(30)
+
+        # Texto a generar   REVISAR
+        texto_perdida = estilo_perdida.render('Su puntaje de la partida pasada es de : ' + str(puntaje), True, black)
+
+        # Cuadro para mover el texto
+        perdida_cuadro = texto_perdida.get_rect()
+
+        # Ubicacion del cuadro
+        perdida_cuadro.center = (450, 400)
+
+        # Para mostrar texto    REVISAR
+        VENTANA.blit(texto_perdida, perdida_cuadro)
 
         MENU_MOUSE_POS = pygame.mouse.get_pos()
 

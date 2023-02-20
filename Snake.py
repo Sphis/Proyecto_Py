@@ -4,44 +4,10 @@ import random
 import sys
 from menu import Button
 
-# Para inicializar todos los modulos de pygame
-pygame.init()
-WIDTH, HEIGHT = 900, 500
-
-velocidad = 15
-
-# Fondo de menu inicial
-fondo = pygame.image.load('Imagenes/fondo.jpg')
-
-# Definiendo colores del juego
-black = pygame.Color(0, 0, 0)
-white = pygame.Color(255, 255, 255)
-red = pygame.Color(255, 0, 0)
-green = pygame.Color(0, 255, 0)
-blue = pygame.Color(0, 0, 255)
-
-# Tamano de la ventana del juego
-VENTANA = pygame.display.set_mode((WIDTH, HEIGHT))
-
-# Frames per second
-fps = pygame.time.Clock()
-
-# Tamano y posicion inicial del snake
-snake_ubicacion = [100, 50]
-
-# El cuerpo del snake, el primer bloque va a 
-# ser igual que la ubicacion inicial
-snake_cuerpo = [  [100, 50],
-                [90, 50],
-                [80, 50],
-                [70, 50]
-                ]
-
-# Puntaje inicial
-puntaje = 0
 
 def get_font(size):
     return pygame.font.SysFont('Cambria', size)
+
 
 # Funcion para el puntaje del usuario durante la partida
 def show_score(choice, color):
@@ -62,7 +28,6 @@ def show_score(choice, color):
 def game_over():
     # Mandar al menu cuando pierde
     main_menu()
-
 
 
 # Funcion para llamar y empezar el juego
@@ -156,6 +121,7 @@ def juego():
         # Frame Per Second / Refresh Rate
         fps.tick(velocidad)
 
+
 # Funcion para menu inicial
 def main_menu():
     while True:
@@ -212,5 +178,41 @@ def main_menu():
 
         pygame.display.update()
 
-main_menu()
 
+if __name__ == '__main__':
+    # Para inicializar todos los modulos de pygame
+    pygame.init()
+    WIDTH, HEIGHT = 900, 500
+
+    velocidad = 15
+
+    # Fondo de menu inicial
+    fondo = pygame.image.load('Imagenes/fondo.jpg')
+
+    # Definiendo colores para usar (RGB)
+    black = pygame.Color(0, 0, 0)
+    white = pygame.Color(255, 255, 255)
+    green = pygame.Color(0, 255, 0)
+
+    # Tamano de la ventana del juego
+    VENTANA = pygame.display.set_mode((WIDTH, HEIGHT))
+
+    # Frames per second
+    fps = pygame.time.Clock()
+
+    # Tamano y posicion inicial del snake
+    snake_ubicacion = [100, 50]
+
+    # El cuerpo del snake, el primer bloque va a 
+    # ser igual que la ubicacion inicial
+    snake_cuerpo = [  [100, 50],
+                    [90, 50],
+                    [80, 50],
+                    [70, 50]
+                    ]
+
+    # Puntaje inicial
+    puntaje = 0
+
+    # Llamando funcion de menu principal para iniciar
+    main_menu()

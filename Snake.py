@@ -80,11 +80,14 @@ def juego(seg, min, snake_ubicacion=[100, 50],
     # Direccion inicial del snake
     direccion = 'RIGHT'
     change_to = direccion
-
+    
     while True:
 
         # Manejando eventos para determinar inputs
         for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_UP:
                     change_to = 'UP'
@@ -118,9 +121,11 @@ def juego(seg, min, snake_ubicacion=[100, 50],
         # Mecanismo para crecimiento despues de comer
         snake_cuerpo.insert(0, list(snake_ubicacion))
         if (snake_ubicacion[0] == ubicacion_fruta[0] and
-                snake_ubicacion[1] == ubicacion_fruta[1]):
+            snake_ubicacion[1] == ubicacion_fruta[1]):
+            sound1.play()
             puntaje += 10
             nacimiento_fruta = False
+            
         else:
             snake_cuerpo.pop()
 
@@ -205,6 +210,7 @@ def main_menu(partida1, tiempo_gameover=0, puntaje=0):
     # Fondo de menu inicial
     fondo = pygame.image.load('Imagenes/fondo.jpg')
 
+    
     while True:
         VENTANA.blit(fondo, (0, 0))
         # Estilo de letra
@@ -290,6 +296,11 @@ if __name__ == '__main__':
 
     # Velocidad del snake
     velocidad = 15
+
+     # Musica del menu y sonidos
+    pygame.mixer.music.load('Sonidos/musicintro.wav')
+    pygame.mixer.music.play(3)
+    sound1 = pygame.mixer.Sound('Sonidos/bite.wav')
 
     # Definiendo colores para usar (RGB)
     black = pygame.Color(0, 0, 0)
